@@ -5,6 +5,7 @@ using UnityEngine;
 public class WeaponHit : MonoBehaviour
 {
     public GameObject bloodEffect;
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy")
@@ -13,7 +14,10 @@ public class WeaponHit : MonoBehaviour
             bloodEffect.transform.position = other.transform.position;
             bloodEffect.transform.rotation = Random.rotation;
             bloodEffect.transform.SetParent(other.transform);
-            //Debug.Log(other.name + "hit at " + other.transform.position); 
+            EventManager.OnEnemyHit(10);
+            //Higher damage for CrossBow
+            //Lower damage for OneHandedWeapon
+            //Maybe headshot mechanic
         }
     }
 }

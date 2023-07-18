@@ -13,17 +13,21 @@ public class EnemyAI : MonoBehaviour
     public NavMeshAgent agent;
     public Vector3 walkPoint;
     public LayerMask whatIsGround, whatIsPlayer;
+    public EnemyHealthHandler enemyHealthHandler;
 
     private void Update()
     {
-        isPlayerInRange = Physics.CheckSphere(transform.position, walkPointRange, whatIsPlayer);
-        if (!isPlayerInRange)
+        if (enemyHealthHandler.health > 0f)
         {
-            Patrol();
-        }
-        else
-        {
-            ChasePlayer();
+            isPlayerInRange = Physics.CheckSphere(transform.position, walkPointRange, whatIsPlayer);
+            if (!isPlayerInRange)
+            {
+                Patrol();
+            }
+            else
+            {
+                ChasePlayer();
+            }
         }
     }
 

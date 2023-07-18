@@ -9,6 +9,7 @@ public class RagdollHandler : MonoBehaviour
     public Rigidbody[] ragdollRigidbodies;
     public BoxCollider boxCollider;
     public Collider[] ragdollColliders;
+    public Animator animator;
 
     private void Start()
     {
@@ -23,7 +24,7 @@ public class RagdollHandler : MonoBehaviour
     {
         if (other.CompareTag("Weapon"))
         {
-            ActivateRagdoll();
+            ActivateHits();
         }
     }   
 
@@ -32,7 +33,8 @@ public class RagdollHandler : MonoBehaviour
         foreach (Collider collider in ragdollColliders)
         {
             collider.enabled = enabled;
-            collider.isTrigger = enabled;
+            collider.isTrigger = !enabled;
+            animator.enabled = !enabled;
         }
     }
 
@@ -44,9 +46,19 @@ public class RagdollHandler : MonoBehaviour
             rb.isKinematic = enabled;
         }
     }
-    private void ActivateRagdoll() {
-        Debug.Log("Ragdoll activated");
+    public void ActivateRagdoll()
+    {
         EnableColliders(true);
+        SetRigidbodies(false);
+        boxCollider.enabled = false;
+        rb.isKinematic = false;
+    }
+    private void ActivateHits() {
+        foreach (Collider collider in ragdollColliders)
+        {
+            collider.enabled = enabled;
+            collider.isTrigger = enabled;
+        }
         rb.isKinematic = true;
     }
 }

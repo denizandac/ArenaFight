@@ -10,6 +10,7 @@ public static class EventManager
     public static event Action OneHandedWeaponSpawned;
     public static event Action CrossBowSpawned;
     public static event Action<int> SpawnButtonPressed;
+    public static event Action<int> EnemyHit;
     
     public static void OnTwoHandedWeaponSpawned()
     {
@@ -26,5 +27,9 @@ public static class EventManager
     public static void OnSpawnButtonPressed(int id)
     {
         SpawnButtonPressed?.Invoke(id);
+    }
+    public static void OnEnemyHit(int damage)
+    {
+        EnemyHit?.Invoke(damage);
     }
 }
