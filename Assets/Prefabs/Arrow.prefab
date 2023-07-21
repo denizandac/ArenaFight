@@ -127,4 +127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 711b4543b637e0746a4e1619f839ff70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 1
   bloodEffect: {fileID: 1834194341294532, guid: d5f26854a8904624c8073139cd2eb346, type: 3}
+  weaponType: 2

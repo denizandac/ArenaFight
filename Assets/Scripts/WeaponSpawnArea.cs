@@ -23,12 +23,20 @@ public class WeaponSpawnArea : MonoBehaviour
                 case 0:
                     EventManager.OnTwoHandedWeaponSpawned();
                     animator.SetBool("TwoHanded", true);
+                    animator.SetBool("OneHanded", false);
+                    animator.SetBool("Unarmed", false);
                     break;
                 case 1:
                     EventManager.OnOneHandedWeaponSpawned();
+                    animator.SetBool("TwoHanded", false);
+                    animator.SetBool("OneHanded", true);
+                    animator.SetBool("Unarmed", false);
                     break;
                 case 2:
                     EventManager.OnCrossBowSpawned();
+                    animator.SetBool("TwoHanded", false);
+                    animator.SetBool("OneHanded", false);
+                    animator.SetBool("Unarmed", true);
                     break;
                 default:
                     break;

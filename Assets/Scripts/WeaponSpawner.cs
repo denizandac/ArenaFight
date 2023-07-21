@@ -22,8 +22,8 @@ public class WeaponSpawner : MonoBehaviour {
         var th = weapons[0];
         th.SetActive(true);
         th.transform.SetParent(ikControl.rightHandObj);
-        th.transform.localPosition = new Vector3(-0.619000018f, 0.149000004f, 0.114f);
-        th.transform.localRotation = new Quaternion(0.0571185835f, 0.068987906f, 0.687078059f, 0.721042275f);
+        th.transform.localPosition = new Vector3(-0.174999997f, 0.179000005f, -0.0189999994f);
+        th.transform.localRotation = new Quaternion(0.206693038f, -0.308702558f, 0.632317901f, 0.679819643f);
         ikControl.rightHandObj.position = th.transform.position;
         ikControl.leftHandObj.position = th.transform.position;
         attackController.attackType = AttackController.AttackType.TwoHandedSword;
@@ -40,11 +40,11 @@ public class WeaponSpawner : MonoBehaviour {
         oh.SetActive(true);
         sh.SetActive(true);
         oh.transform.SetParent(ikControl.rightHandObj);
-        oh.transform.localPosition = new Vector3(-0.347000003f, 0.0820000023f, 0.0979999974f);
-        oh.transform.localRotation = new Quaternion(0.0571185835f, 0.068987906f, 0.687078059f, 0.721042275f);
+        oh.transform.localPosition = new Vector3(-0.119999997f, 0.0410000011f, 0.00100000005f);
+        oh.transform.localRotation = new Quaternion(0.740572333f, -0.425489664f, 0.444782734f, 0.2695916f);
         sh.transform.SetParent(ikControl.leftHandObj);
-        sh.transform.localPosition = new Vector3(-0.0790000036f, 0.00800000038f, 0.0839999989f);
-        sh.transform.localRotation = new Quaternion(0.192056775f, 0.718971729f, 0.660794556f, 0.0976961851f);
+        sh.transform.localPosition = new Vector3(-0.0730366483f, 0.0259790942f, 0.044283092f);
+        sh.transform.localRotation = new Quaternion(0.668236792f, 0.31752345f, -0.585976362f, 0.330560535f);
         ikControl.rightHandObj.position = oh.transform.position;
         ikControl.leftHandObj.position = sh.transform.position;
         attackController.attackType = AttackController.AttackType.OneHandedSword;
@@ -60,8 +60,8 @@ public class WeaponSpawner : MonoBehaviour {
         var cb = weapons[3];
         cb.SetActive(true);
         cb.transform.SetParent(ikControl.leftHandObj);
-        cb.transform.localPosition = new Vector3(0.56099999f, -0.201000005f, 0.34799999f);
-        cb.transform.localRotation = new Quaternion(0.618779957f, 0.35654819f, 0.317947388f, 0.623613954f);
+        cb.transform.localPosition = new Vector3(0.214000002f, 0.308999985f, 0.0250000004f);
+        cb.transform.localRotation = new Quaternion(0.471128017f, -0.0817502663f, -0.684128463f, -0.550748229f);
         ikControl.rightHandObj.position = cb.transform.position;
         ikControl.leftHandObj.position = cb.transform.position;
         attackController.attackType = AttackController.AttackType.Crossbow;

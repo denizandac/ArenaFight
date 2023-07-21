@@ -8,8 +8,8 @@ using System.Net.Mail;
 
 public class AttackController : MonoBehaviour
 {
-    public bool isAiming, isDefending, canShoot;
-    public float timeBetweenShoots = 3f;
+    public bool isAiming, isDefending, canShoot, canAttack;
+    public float timeBetweenShoots = 3f, timeBetweenAttacks = 1.3f;
     public Animator animator;
     public Camera mainCamera;
     public GameObject aimCross, defenseSprite, bulletPrefab;
@@ -26,6 +26,10 @@ public class AttackController : MonoBehaviour
         if (timeBetweenShoots > 0f)
         {
             timeBetweenShoots -= Time.deltaTime;
+        }
+        if(timeBetweenAttacks > 0f)
+        {
+            timeBetweenAttacks -= Time.deltaTime;
         }
     }
     public void FixedUpdate()
@@ -65,17 +69,26 @@ public class AttackController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (attackType == AttackType.TwoHandedSword)
+            if (attackType == AttackType.TwoHandedSword && timeBetweenAttacks <= 0f)
             {
+                canAttack = true;
+                timeBetweenAttacks = 1f;
                 animator.SetTrigger("PerformLeftAttack");
             }
-            else if (attackType == AttackType.OneHandedSword)
+            else if (attackType == AttackType.OneHandedSword && timeBetweenAttacks <= 0f)
             {
-                //animator.SetTrigger("Attack2");
-            }
-            else if (attackType == AttackType.Crossbow)
-            {
-                //animator.SetTrigger("Attack3");
+                canAttack = true;
+                timeBetweenAttacks = 1f;
+                var attackType = Random.Range(0, 2);
+                switch (attackType)
+                {
+                    case 0:
+                        animator.SetTrigger("PerformLeftAttack");
+                        break;
+                    case 1:
+                        animator.SetTrigger("PerformRightAttack");
+                        break;
+                }
             }
         }
         else if (Input.GetMouseButton(1))
@@ -83,7 +96,7 @@ public class AttackController : MonoBehaviour
             if (attackType == AttackType.OneHandedSword)
             {
                 isDefending = true;
-                //animator.SetTrigger("Defense2");
+                animator.SetBool("isBlocking", true);
 
             }
             else if (attackType == AttackType.Crossbow)
@@ -99,11 +112,14 @@ public class AttackController : MonoBehaviour
         {
             isAiming = false;
             isDefending = false;
+            animator.SetBool("isBlocking", false);
         }
-        if (attackType == AttackType.TwoHandedSword)
+        if (attackType == AttackType.TwoHandedSword && timeBetweenAttacks <= 0f)
         {
             if (Input.GetMouseButtonDown(1))
             {
+                canAttack = true;
+                timeBetweenAttacks = 1f;
                 animator.SetTrigger("PerformRightAttack");
             }
         }

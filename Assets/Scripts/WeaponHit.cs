@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class WeaponHit : MonoBehaviour
 {
+    public int id;
     public GameObject bloodEffect;
+    public WeaponType weaponType;
     
     private void OnTriggerEnter(Collider other)
     {
@@ -14,10 +16,24 @@ public class WeaponHit : MonoBehaviour
             bloodEffect.transform.position = other.transform.position;
             bloodEffect.transform.rotation = Random.rotation;
             bloodEffect.transform.SetParent(other.transform);
-            EventManager.OnEnemyHit(10);
-            //Higher damage for CrossBow
-            //Lower damage for OneHandedWeapon
-            //Maybe headshot mechanic
+            
+            switch (weaponType)
+            {
+                case WeaponType.TwoHandedWeapon:
+                    EventManager.OnEnemyHit(25, id);
+                    break;
+                case WeaponType.OneHandedWeapon:
+                    EventManager.OnEnemyHit(15, id);
+                    break;
+                case WeaponType.CrossBow:
+                    EventManager.OnEnemyHit(35, id);
+                    break;
+            }
         }
+    }
+    public enum WeaponType {
+            TwoHandedWeapon,
+            OneHandedWeapon,
+            CrossBow
     }
 }
